@@ -2,21 +2,22 @@
 
 import random
 
-#Kenji and Adelle
+#Kenji and Adelle - This picks a random word from the list of words to use in the game.
 words= ["ocean","water","kenji","ducky","kayze","eliza","smoke","train", "layer","alone","brain","craft","paint","flute","beach","heart","human","image","lemon","lucky","mouse","metal","noise","plane","phone","power","quiet","ready","store","sport","storm","today","table","under","video","watch","young", "slate", "crane", "brick", "slate", "stare", "raise", "arise", "farts", "bread",] 
 word = random.choice(words) 
 
-#Kayzee
+#Kayzee - variables
 space = "_"
 strikes = 0
 
-#Adelle
+#Adelle - intructions
 print("Hi welcome to hangman!\nThis game consists of an unkown five letter word. First, begin to assemble the word by guessing one letter at a time. Second, if you guess a letter that is not in the word, a strike will appear. If you gain 8 strikes, you're out. Lastly, if you think you know the word, you can guess the whole word at once. Try to fill in the whole word with minimal strikes. Have fun playing!")
 
+# more variables
 guessed_letters = []
 output_list = []
 
-#Eliza and Kayzee
+#Eliza and Kayzee - This defines the guess function, which asks for a in imput and then controls the different outputs. It changes what happens with each different kind of input(changes strikes).
 def guess():
     user_input = input("Guess a letter: ").strip().lower()
     if user_input == "":
@@ -40,7 +41,7 @@ def guess():
         print("Incorrect, guess again.")
         return 1
 
-#Eliza
+#Eliza - This is a loop that runs the guess function until the user has lost, so basically plays the game. This also prints out the spaces/letters by combining the lists and user imputs and stuff. It also checks if the user has guessed the word/if they win.
 while strikes < 8:
     strikes += guess()
     print(f"Strikes: {strikes}")
@@ -52,13 +53,13 @@ while strikes < 8:
     output = (' '.join(output_list))
     print(output)
     output_list = []
-    if ' '.join(word).strip() == output: #Kenji and Adelle
+    if ' '.join(word).strip() == output: #Kenji and Adelle (and Eliza)
         print("Horray! You guessed the word! Rerun the code to play again.")
         break
     else:
         continue
 
-#Kenji
+#Kenji (and Eliza) - tells the user they lost and ends the code
 def you_lost():
     print(f"You lost! The word was {word}.")
     return strikes + 1
