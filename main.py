@@ -1,28 +1,30 @@
 # KR EH AT KS 6th Team Game Hangman
+
 import random
 
-#kenji and Adelle
-#Variables
-words= ["father", "ocean", "water", "kenji", "ducky", "kayze", "eliza", "smoke","train","layer"] 
-word = random.choice(words) 
+#Kenji and Adelle
+words= ["father","ocean","water","kenji","ducky","kayze","eliza","smoke","train", "layer","alone","brain","craft","paint","flute","beach","heart","human","image","lemon","lucky","mouse","metal","noise","plane","phone","power","quiet","ready","store","sport","storm","today","table","under","video","watch","young"] 
+word = random.choice(words)
 
 #Kayzee
-print(word)
+#print(word)
 space = "_"
 strikes = 0
 
 #Adelle
-print("Hi welcome to hangman!\nHow the game consists is we will have a five letter word that will remain unknown, firstly begin to guess a letter to assemble the word, secondly once you guess the letters based on the word a strike will appear if you gain 6 strikes your out, lastly guess the letters to the word and try to complete the word with minimal strikes")
+print("Hi welcome to hangman!\nThis game consists of an unkown five letter word. First, begin to assemble the word by guessing one letter at a time. Second, if you guess a letter that is not in the word, a strike will appear. If you gain 6 strikes, you're out. Lastly, guess letters to try to complete the word with minimal strikes. Have fun playing!")
 
-output= f"{space} {space} {space} {space} {space}"
-#print(output)
+guessed_letters = []
+output_list = []
 
-guessed_letters = [0]
-
-#Eliza
+#Eliza and Kayzee
 def guess():
     user_input = input("Guess a letter: ").strip().lower()
-    guessed_letters.append(user_input)
+    if user_input in guessed_letters:
+        print("You already guessed that letter!")
+        return 0
+    else:
+        guessed_letters.append(user_input)
     if user_input in word:
         print(f"Correct!")
         return 0
@@ -30,37 +32,25 @@ def guess():
         print("Incorrect, guess again.")
         return 1
 
-#Eliza and Kayzee
+#Eliza
 while strikes < 6:
     strikes += guess()
     print(f"Strikes: {strikes}")
+    for letter in word:
+        if letter in guessed_letters:
+            output_list += letter
+        else:
+            output_list += space
+    output = (' '.join(output_list))
     print(output)
-    #for letter in word:
-        #if letter in guessed_letters:
-            #print(letter)
-        #else:
-            #print(space)
+    output_list = []
+    if ' '.join(word).strip() == output: #Kenji and Adelle
+        print("Horray! You guessed the word! Rerun the code to play again.")
+        break
+    else:
+        continue
 
 #Kenji
 while strikes == 6:
-    print("You lost! Run the code through again.")
+    print("You lost! Rerun the code to play again.")
     strikes += 1
-
-#Eliza
-#for letter in word:
-    #if letter in guessed_letters:
-    #    print(letter)
-    #else:
-    #    print(space)
-
-#Kenji and Adelle
-if word == user_input:
-    print("YOU DID IT!") 
-    print(f"{space}")
-
-for letter in word:
-    if letter in guessed_letters:
-        output.append(letter)
-    else:
-        output.append(space)
-
